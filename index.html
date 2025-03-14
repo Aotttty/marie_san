@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!-- supabase head -->
+    <!--　　　　<script src="https://unpkg.com/@supabase/supabase-js@2"></script> 　　　-->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>イラストレーターポートフォリオ</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700&family=Zen+Maru+Gothic:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav id="main-nav">
+            <div class="logo">
+                <h2>Illustrator Name</h2>
+            </div>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="#hero" class="nav-item">Home</a></li>
+                    <li><a href="#information" class="nav-item">Information</a></li>
+                    <li><a href="#profile" class="nav-item">Profile</a></li>
+                    <li><a href="#gallery" class="nav-item">Gallery</a></li>
+                    <li><a href="#contact" class="nav-item">Contact</a></li>
+                </ul>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="hero-content">
+                <div class="hero-image-container">
+                    <div class="hero-image-layer layer-1" data-speed="0.2"></div>
+                    <div class="hero-image-layer layer-2" data-speed="0.4"></div>
+                    <div class="hero-image-layer layer-3" data-speed="0.6"></div>
+                </div>
+                <div class="hero-text">
+                    <h1 class="fade-in">Illustrator Name</h1>
+                    <p class="tagline fade-in">感性と繊細さが織りなす、独創的なイラストの世界</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Information Section -->
+        <section id="information" class="information-section">
+            <div class="section-title">
+                <h2>Information</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="info-container">
+                        
+                
+                <!-- Information Section(Newsテーブルから取ってくる) -->
+                <div class="info-news">
+                    <h3>最新情報</h3>
+                    <div class="news-items">
+                        <!-- 動的に生成される最新情報アイテム -->
+                        <div class="news-item">
+                            <div class="news-date">2025.03.01</div>
+                            <div class="news-content">オリジナルイラスト集「儚き世界の彩り」発売決定！</div>
+                        </div>
+                        <div class="news-item">
+                            <div class="news-date">2025.02.15</div>
+                            <div class="news-content">個展「モノクロームの調べ」開催のお知らせ（3/10-3/20）</div>
+                        </div>
+                        <div class="news-item">
+                            <div class="news-date">2025.01.20</div>
+                            <div class="news-content">小説「星の記憶」の表紙イラストを担当しました</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-clients">
+                <!-- Information Section (Newsテーブルから取ってくる)終わり -->
+
+                    <!-- 取引実績 Section (Clientsテーブルから取ってくる) -->
+                    <h3>取引実績</h3>
+                    <div class="client-logos">
+                        <!-- 動的に生成されるクライアントロゴ -->
+                        <div class="client-logo">
+                            <div class="placeholder-logo">Client A</div>
+                        </div>
+                        <div class="client-logo">
+                            <div class="placeholder-logo">Client B</div>
+                        </div>
+                        <div class="client-logo">
+                            <div class="placeholder-logo">Client C</div>
+                        </div>
+                    </div>
+                    <!-- 取引実績 Section (Clientsテーブルから取ってくる)終わり -->   
+                </div>
+            </div>
+        </section>
+
+        <!-- Profile Section -->
+        <section id="profile" class="profile-section">
+            <div class="section-title">
+                <h2>Profile</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="profile-container">
+                <div class="profile-content">
+                    <div class="profile-image">
+                        <img src="https://via.placeholder.com/200" alt="イラストレーターのプロフィール画像">
+                    </div>
+                    <div class="profile-text">
+                        <div class="profile-name">
+                            <h3>イラストレーター名</h3>
+                            <div class="profile-social">
+                                <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                                <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <div class="profile-bio">
+                            <p>都会の喧騒から離れた静かなアトリエで、日々イラストを描いています。繊細なタッチと独特の色彩感覚を活かし、見る人の心に残る作品を目指しています。</p>
+                            <p>主に小説やゲーム、個人YouTuberのサムネイルなど、幅広いジャンルのイラスト制作を行っています。和風イラストから現代的なデザインまで対応可能です。</p>
+                        </div>
+                        <div class="profile-interests">
+                            <h4>趣味・好きなこと</h4>
+                            <ul>
+                                <li><i class="fas fa-book"></i> 古典文学</li>
+                                <li><i class="fas fa-music"></i> クラシック音楽</li>
+                                <li><i class="fas fa-mountain"></i> 自然散策</li>
+                                <li><i class="fas fa-coffee"></i> カフェ巡り</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-twitter-embed">
+                    <h3>最近の投稿</h3>
+                    <div class="twitter-timeline-container">
+                        <!-- ここにTwitter埋め込みウィジェットが入ります -->
+                        <div class="twitter-placeholder">
+                            <p>X(Twitter)の埋め込みウィジェットがここに表示されます</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="gallery-section">
+            <div class="section-title">
+                <h2>Gallery</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="gallery-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="original">Original</button>
+                <button class="filter-btn" data-filter="fanart">Fan Art</button>
+                <button class="filter-btn" data-filter="commercial">Commercial</button>
+            </div>
+            <div class="gallery-grid">
+                <!-- 動的に生成されるギャラリーアイテム -->
+                <div class="gallery-item" data-category="original">
+                    <div class="gallery-image">
+                        <img src="https://via.placeholder.com/400x500" alt="オリジナルイラスト1">
+                    </div>
+                    <div class="gallery-item-overlay">
+                        <h3>作品タイトル1</h3>
+                        <p>オリジナル作品</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="fanart">
+                    <div class="gallery-image">
+                        <img src="https://via.placeholder.com/400x400" alt="ファンアート1">
+                    </div>
+                    <div class="gallery-item-overlay">
+                        <h3>作品タイトル2</h3>
+                        <p>ファンアート</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="commercial">
+                    <div class="gallery-image">
+                        <img src="https://via.placeholder.com/400x600" alt="商業イラスト1">
+                    </div>
+                    <div class="gallery-item-overlay">
+                        <h3>作品タイトル3</h3>
+                        <p>商業イラスト</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="original">
+                    <div class="gallery-image">
+                        <img src="https://via.placeholder.com/400x500" alt="オリジナルイラスト2">
+                    </div>
+                    <div class="gallery-item-overlay">
+                        <h3>作品タイトル4</h3>
+                        <p>オリジナル作品</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="fanart">
+                    <div class="gallery-image">
+                        <img src="https://via.placeholder.com/400x400" alt="ファンアート2">
+                    </div>
+                    <div class="gallery-item-overlay">
+                        <h3>作品タイトル5</h3>
+                        <p>ファンアート</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="commercial">
+                    <div class="gallery-image">
+                        <img src="https://via.placeholder.com/400x600" alt="商業イラスト2">
+                    </div>
+                    <div class="gallery-item-overlay">
+                        <h3>作品タイトル6</h3>
+                        <p>商業イラスト</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-modal">
+                <span class="modal-close">&times;</span>
+                <img class="modal-content" id="modal-image">
+                <div class="modal-caption">
+                    <h3 id="modal-title"></h3>
+                    <p id="modal-description"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section (基本構造のみ、フォーム機能なし) -->
+        <section id="contact" class="contact-section">
+            <div class="section-title">
+                <h2>Contact</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="contact-info">
+                <div class="contact-text">
+                    <h3>お問い合わせ</h3>
+                    <p>イラスト制作のご依頼やお問い合わせは、各種SNSのDMまたは下記メールアドレスにてお願いいたします。</p>
+                    <div class="contact-email">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:contact@example.com">contact@example.com</a>
+                    </div>
+                    <div class="contact-social">
+                        <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i> X (Twitter)</a>
+                        <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a>
+                    </div>
+                </div>
+                <div class="contact-status">
+                    <h3>現在の受付状況</h3>
+                    <div class="status-indicator open">
+                        <span class="status-dot"></span>
+                        <p>受付中</p>
+                    </div>
+                    <div class="status-details">
+                        <p>納期目安：ご依頼から2〜3週間</p>
+                        <p>※内容により変動する場合があります</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h3>Illustrator Name</h3>
+            </div>
+            <div class="footer-links">
+                <a href="#hero">Home</a>
+                <a href="#information">Information</a>
+                <a href="#profile">Profile</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-social">
+                <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Illustrator Name. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <div class="modal" id="image-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <img id="modal-img" src="" alt="拡大イラスト">
+            <div class="modal-details">
+                <h3 id="modal-title">タイトル</h3>
+                <p id="modal-desc">説明</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>
