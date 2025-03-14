@@ -1,11 +1,12 @@
 {
-  "name": "portfolio-website",
-  "version": "1.0.0",
-  "description": "Portfolio website",
-  "scripts": {
-    "start": "node app.js"
-  },
-  "dependencies": {
-    "express": "^4.18.2"
-  }
-} 
+    "name": "portfolio-website",
+    "version": "1.0.0",
+    "description": "Portfolio website",
+    "scripts": {
+      "start": "node app.js"
+    },
+    "dependencies": {
+      "express": "^4.18.2",
+      "path": "^0.12.7"
+    }
+}

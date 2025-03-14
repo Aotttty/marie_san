@@ -1,3 +1,24 @@
+// 追加:ファイルの先頭に
+const express = require('express');
+const path = require('path');
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// 静的ファイルを提供
+app.use(express.static('./'));
+
+// ルートルート
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// サーバー起動
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
+
+
 document.addEventListener('DOMContentLoaded', function() {
     // ナビゲーションの制御
     const hamburger = document.querySelector('.hamburger');
