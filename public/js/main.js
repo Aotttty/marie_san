@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Supabaseクライアントの初期化（修正版）
+    // Supabaseクライアントの初期化
     const supabaseClient = supabase.createClient(
         'https://hhdegucsmvfxaodlduih.supabase.co',
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhoZGVndWNzbXZmeGFvZGxkdWloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTAzOTg5MjAsImV4cCI6MjAyNTk3NDkyMH0.05w73Ped0g38r4a1bxgFCpz_ks2ddx2E6h9BhK_7Jv0'
@@ -7,41 +7,37 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 最新情報の取得と表示
     async function loadNews() {
+        const newsContainer = document.querySelector('.news-items');
+        if (!newsContainer) return;
+
+        // ローディング表示
+        newsContainer.innerHTML = `
+            <div class="news-item">
+                <div class="news-content">データを読み込んでいます...</div>
+            </div>
+        `;
+
         try {
-            console.log('Fetching news...'); // デバッグログ
             const { data: news, error } = await supabaseClient
                 .from('News')
-                .select('*')
-                .order('created_at', { ascending: false })
+                .select('content, created_at')  // created_atとcontentを選択
+                .order('created_at', { ascending: false })  // created_atで並び替え
                 .limit(5);
 
-            if (error) {
-                console.error('Supabase error:', error);
-                return;
-            }
+            if (error) throw error;
 
-            console.log('Fetched news:', news); // デバッグログ
-
-            const newsContainer = document.querySelector('.news-items');
-            if (!newsContainer) {
-                console.error('News container not found');
-                return;
-            }
-
-            // 既存のコンテンツをクリア
-            newsContainer.innerHTML = '';
-            
             if (!news || news.length === 0) {
                 newsContainer.innerHTML = `
                     <div class="news-item">
-                        <div class="news-content">データ取得中...</div>
+                        <div class="news-content">最新情報はありません。</div>
                     </div>
                 `;
                 return;
             }
 
+            // データを表示
+            newsContainer.innerHTML = '';
             news.forEach(item => {
-                console.log('News Item:', item); // 各ニュースデータを確認
                 const date = new Date(item.created_at);
                 const formattedDate = `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}`;
                 
@@ -49,20 +45,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 newsItem.className = 'news-item';
                 newsItem.innerHTML = `
                     <div class="news-date">${formattedDate}</div>
-                    <div class="news-content">${item.description || item.content}</div>
+                    <div class="news-content">${item.content}</div>
                 `;
                 newsContainer.appendChild(newsItem);
             });
+
         } catch (error) {
             console.error('Error loading news:', error);
-            const newsContainer = document.querySelector('.news-items');
-            if (newsContainer) {
-                newsContainer.innerHTML = `
-                    <div class="news-item">
-                        <div class="news-content">データの読み込みに失敗しました。</div>
-                    </div>
-                `;
-            }
+            newsContainer.innerHTML = `
+                <div class="news-item">
+                    <div class="news-content">データの読み込みに失敗しました。</div>
+                </div>
+            `;
         }
     }
 
