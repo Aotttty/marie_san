@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const { data: news, error } = await supabaseClient
                 .from('News')
                 .select('*')
-                .order('date', { ascending: false })
+                .order('created_at', { ascending: false })
                 .limit(5);
 
             if (error) {
@@ -41,14 +41,15 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             news.forEach(item => {
-                const date = new Date(item.date);
+                console.log('News Item:', item); // 各ニュースデータを確認
+                const date = new Date(item.created_at);
                 const formattedDate = `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}`;
                 
                 const newsItem = document.createElement('div');
                 newsItem.className = 'news-item';
                 newsItem.innerHTML = `
                     <div class="news-date">${formattedDate}</div>
-                    <div class="news-content">${item.content}</div>
+                    <div class="news-content">${item.description || item.content}</div>
                 `;
                 newsContainer.appendChild(newsItem);
             });
