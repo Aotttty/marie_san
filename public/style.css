@@ -189,17 +189,17 @@ header {
 }
 
 .layer-1 {
-    background-image: url('https://via.placeholder.com/1920x1080?text=Layer1');
+    background-image: url('https://placehold.co/1920x1080?text=Layer1');
     z-index: 1;
 }
 
 .layer-2 {
-    background-image: url('https://via.placeholder.com/1920x1080?text=Layer2');
+    background-image: url('https://placehold.co/1920x1080?text=Layer2');
     z-index: 2;
 }
 
 .layer-3 {
-    background-image: url('https://via.placeholder.com/1920x1080?text=Layer3');
+    background-image: url('https://placehold.co/1920x1080?text=Layer3');
     z-index: 3;
 }
 

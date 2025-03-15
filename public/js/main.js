@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Supabaseクライアントの初期化
-    const supabaseClient = supabase.createClient(
+    const { createClient } = supabase;
+    const supabaseClient = createClient(
         'https://hhdegucsmvfxaodlduih.supabase.co',
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhoZGVndWNzbXZmeGFvZGxkdWloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTAzOTg5MjAsImV4cCI6MjAyNTk3NDkyMH0.05w73Ped0g38r4a1bxgFCpz_ks2ddx2E6h9BhK_7Jv0'
     );
@@ -18,13 +19,19 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
 
         try {
+            console.log('Supabaseに接続を試みています...');
             const { data: news, error } = await supabaseClient
-                .from('News')
-                .select('content, created_at')  // created_atとcontentを選択
-                .order('created_at', { ascending: false })  // created_atで並び替え
+                .from('news')
+                .select('content, created_at')
+                .order('created_at', { ascending: false })
                 .limit(5);
 
-            if (error) throw error;
+            if (error) {
+                console.error('Supabaseエラー:', error);
+                throw error;
+            }
+
+            console.log('取得したニュース:', news);
 
             if (!news || news.length === 0) {
                 newsContainer.innerHTML = `
@@ -54,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error loading news:', error);
             newsContainer.innerHTML = `
                 <div class="news-item">
-                    <div class="news-content">データの読み込みに失敗しました。</div>
+                    <div class="news-content">データの読み込みに失敗しました。エラー: ${error.message}</div>
                 </div>
             `;
         }
