@@ -3,8 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const { createClient } = supabase;
     const supabaseClient = createClient(
         'https://hhdegucsmvfxaodlduih.supabase.co',
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhoZGVndWNzbXZmeGFvZGxkdWloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTAzOTg5MjAsImV4cCI6MjAyNTk3NDkyMH0.05w73Ped0g38r4a1bxgFCpz_ks2ddx2E6h9BhK_7Jv0'
-    );
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhoZGVndWNzbXZmeGFvZGxkdWloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg3NTgzOTEsImV4cCI6MjA1NDMzNDM5MX0.05w73Ped0g38r4a1bxgFCpz_ks2ddx2E6h9BhK_7Jv0");
 
     // 最新情報の取得と表示
     async function loadNews() {
