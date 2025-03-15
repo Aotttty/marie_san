@@ -1,4 +1,44 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Supabaseクライアントの初期化
+    const supabase = supabase.createClient(
+        'https://hhdegucsmvfxaodlduih.supabase.co',
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhoZGVndWNzbXZmeGFvZGxkdWloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTAzOTg5MjAsImV4cCI6MjAyNTk3NDkyMH0.05w73Ped0g38r4a1bxgFCpz_ks2ddx2E6h9BhK_7Jv0'
+    );
+
+    // 最新情報の取得と表示
+    async function loadNews() {
+        try {
+            const { data: news, error } = await supabase
+                .from('news')
+                .select('*')
+                .order('date', { ascending: false })
+                .limit(5);
+
+            if (error) throw error;
+
+            const newsContainer = document.querySelector('.news-items');
+            newsContainer.innerHTML = ''; // 既存のコンテンツをクリア
+            
+            news.forEach(item => {
+                const date = new Date(item.date);
+                const formattedDate = `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}`;
+                
+                const newsItem = document.createElement('div');
+                newsItem.className = 'news-item';
+                newsItem.innerHTML = `
+                    <div class="news-date">${formattedDate}</div>
+                    <div class="news-content">${item.content}</div>
+                `;
+                newsContainer.appendChild(newsItem);
+            });
+        } catch (error) {
+            console.error('Error loading news:', error);
+        }
+    }
+
+    // 最新情報を読み込む
+    loadNews();
+
     // ナビゲーションの制御
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
