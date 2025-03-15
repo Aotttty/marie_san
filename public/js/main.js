@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             console.log('Supabaseに接続を試みています...');
             const { data: news, error } = await supabaseClient
-                .from('news')
+                .from('News')
                 .select('content, created_at')
                 .order('created_at', { ascending: false })
                 .limit(5);
