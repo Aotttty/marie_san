@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Supabaseクライアントの初期化
-    const supabase = supabase.createClient(
+    // Supabaseクライアントの初期化（修正版）
+    const supabaseClient = supabase.createClient(
         'https://hhdegucsmvfxaodlduih.supabase.co',
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhoZGVndWNzbXZmeGFvZGxkdWloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTAzOTg5MjAsImV4cCI6MjAyNTk3NDkyMH0.05w73Ped0g38r4a1bxgFCpz_ks2ddx2E6h9BhK_7Jv0'
     );
@@ -8,17 +8,38 @@ document.addEventListener('DOMContentLoaded', function() {
     // 最新情報の取得と表示
     async function loadNews() {
         try {
-            const { data: news, error } = await supabase
+            console.log('Fetching news...'); // デバッグログ
+            const { data: news, error } = await supabaseClient
                 .from('news')
                 .select('*')
                 .order('date', { ascending: false })
                 .limit(5);
 
-            if (error) throw error;
+            if (error) {
+                console.error('Supabase error:', error);
+                return;
+            }
+
+            console.log('Fetched news:', news); // デバッグログ
 
             const newsContainer = document.querySelector('.news-items');
-            newsContainer.innerHTML = ''; // 既存のコンテンツをクリア
+            if (!newsContainer) {
+                console.error('News container not found');
+                return;
+            }
+
+            // 既存のコンテンツをクリア
+            newsContainer.innerHTML = '';
             
+            if (!news || news.length === 0) {
+                newsContainer.innerHTML = `
+                    <div class="news-item">
+                        <div class="news-content">データ取得中...</div>
+                    </div>
+                `;
+                return;
+            }
+
             news.forEach(item => {
                 const date = new Date(item.date);
                 const formattedDate = `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}`;
@@ -33,6 +54,14 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         } catch (error) {
             console.error('Error loading news:', error);
+            const newsContainer = document.querySelector('.news-items');
+            if (newsContainer) {
+                newsContainer.innerHTML = `
+                    <div class="news-item">
+                        <div class="news-content">データの読み込みに失敗しました。</div>
+                    </div>
+                `;
+            }
         }
     }
 
