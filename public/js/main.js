@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 newsItem.className = 'news-item';
                 newsItem.innerHTML = `
                     <div class="news-date">${formattedDate}</div>
-                    <div class="news-content">${item.content}</div>
+                    <div class="news-content">${item.tittle}</div>
                 `;
                 newsContainer.appendChild(newsItem);
             });
