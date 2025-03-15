@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             console.log('Fetching news...'); // デバッグログ
             const { data: news, error } = await supabaseClient
-                .from('news')
+                .from('News')
                 .select('*')
                 .order('date', { ascending: false })
                 .limit(5);
