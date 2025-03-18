@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (admin) {
                 // プロフィール名の更新（ナビゲーションと複数箇所）
-                const nameElements = document.querySelectorAll('.logo h2, .profile-name h3, .footer-logo h3');
+                const nameElements = document.querySelectorAll('.profile-name h3');
                 nameElements.forEach(el => {
                     if (el) el.textContent = admin.name || 'Illustrator Name';
                 });
