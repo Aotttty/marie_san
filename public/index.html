@@ -12,6 +12,43 @@
 
     <!-- Supabase Client SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+        /* 受付状況のスタイル */
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            background-color: var(--light-gray);
+        }
+        
+        .status-indicator.open .status-dot {
+            background-color: #4CAF50;
+        }
+        
+        .status-indicator.closed .status-dot {
+            background-color: #F44336;
+        }
+        
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        
+        .status-details {
+            margin-top: 15px;
+        }
+        
+        .status-details p {
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -236,9 +273,9 @@
                 </div>
                 <div class="contact-status">
                     <h3>現在の受付状況</h3>
-                    <div class="status-indicator open">
+                    <div class="status-indicator">
                         <span class="status-dot"></span>
-                        <p>受付中</p>
+                        <p>読み込み中...</p>
                     </div>
                     <div class="status-details">
                         <p>納期目安：ご依頼から2〜3週間</p>
