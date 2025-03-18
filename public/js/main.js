@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
         'https://hhdegucsmvfxaodlduih.supabase.co',
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhoZGVndWNzbXZmeGFvZGxkdWloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg3NTgzOTEsImV4cCI6MjA1NDMzNDM5MX0.05w73Ped0g38r4a1bxgFCpz_ks2ddx2E6h9BhK_7Jv0");
 
-    // 最新情報の取得と表示
+    // 最新情報の取得と表示（Newsテーブル）
     async function loadNews() {
         const newsContainer = document.querySelector('.news-items');
         if (!newsContainer) return;
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             // データを表示
-            newsContainer.innerHTML = '';
+            newsContainer.innerHTML = '';　　
             news.forEach(item => {
                 const date = new Date(item.created_at);
                 const formattedDate = `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}`;
@@ -66,8 +66,103 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // 最新情報を読み込む
+    // プロフィール情報の取得と表示（Adminsテーブル）
+    async function loadProfile() {
+        try {
+            const { data: admin, error } = await supabaseClient
+                .from('Admins')
+                .select('name, bio, image_url, twitter, instagram')
+                .single();
+
+            if (error) throw error;
+
+            if (admin) {
+                // プロフィール名の更新
+                document.querySelector('.profile-name h3').textContent = admin.name;
+                // プロフィール画像の更新
+                document.querySelector('.profile-image img').src = admin.image_url;
+                // 自己紹介文の更新
+                document.querySelector('.profile-bio').innerHTML = admin.bio;
+                // SNSリンクの更新
+                if (admin.twitter) {
+                    document.querySelector('.profile-social a[class*="twitter"]').href = admin.twitter;
+                }
+                if (admin.instagram) {
+                    document.querySelector('.profile-social a[class*="instagram"]').href = admin.instagram;
+                }
+            }
+        } catch (error) {
+            console.error('Error loading profile:', error);
+        }
+    }
+
+    // 取引実績の取得と表示（Clientsテーブル）
+    async function loadClients() {
+        const clientContainer = document.querySelector('.client-logos');
+        if (!clientContainer) return;
+
+        try {
+            const { data: clients, error } = await supabaseClient
+                .from('Clients')
+                .select('name, logo_url');
+
+            if (error) throw error;
+
+            clientContainer.innerHTML = '';
+            clients.forEach(client => {
+                const clientLogo = document.createElement('div');
+                clientLogo.className = 'client-logo';
+                clientLogo.innerHTML = `
+                    ${client.logo_url 
+                        ? `<img src="${client.logo_url}" alt="${client.name}">`
+                        : `<div class="placeholder-logo">${client.name}</div>`
+                    }
+                `;
+                clientContainer.appendChild(clientLogo);
+            });
+        } catch (error) {
+            console.error('Error loading clients:', error);
+        }
+    }
+
+    // ギャラリー作品の取得と表示（Worksテーブル）
+    async function loadWorks() {
+        const galleryGrid = document.querySelector('.gallery-grid');
+        if (!galleryGrid) return;
+
+        try {
+            const { data: works, error } = await supabaseClient
+                .from('Works')
+                .select('title, description, image_url, category');
+
+            if (error) throw error;
+
+            galleryGrid.innerHTML = '';
+            works.forEach(work => {
+                const workItem = document.createElement('div');
+                workItem.className = 'gallery-item';
+                workItem.setAttribute('data-category', work.category);
+                workItem.innerHTML = `
+                    <div class="gallery-image">
+                        <img src="${work.image_url}" alt="${work.title}">
+                    </div>
+                    <div class="gallery-item-overlay">
+                        <h3>${work.title}</h3>
+                        <p>${work.description}</p>
+                    </div>
+                `;
+                galleryGrid.appendChild(workItem);
+            });
+        } catch (error) {
+            console.error('Error loading works:', error);
+        }
+    }
+
+    // データの読み込みを実行
     loadNews();
+    loadProfile();
+    loadClients();
+    loadWorks();
 
     // ナビゲーションの制御
     const hamburger = document.querySelector('.hamburger');
