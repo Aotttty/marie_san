@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // データ取得を試みる
             const { data: news, error } = await supabaseClient
-                .from('news') // テーブル名は小文字で試す
+                .from('News') // テーブル名は小文字で試す
                 .select('*')
                 .order('created_at', { ascending: false })
                 .limit(5);
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Adminsテーブルに接続を試みています...');
             
             const { data: admin, error } = await supabaseClient
-                .from('admins') // テーブル名は小文字で試す
+                .from('Admins') 
                 .select('*')
                 .limit(1)
                 .single();
@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Clientsテーブルに接続を試みています...');
             
             const { data: clients, error } = await supabaseClient
-                .from('clients') // テーブル名は小文字で試す
+                .from('Clients') // テーブル名は小文字で試す
                 .select('*');
 
             if (error) {
